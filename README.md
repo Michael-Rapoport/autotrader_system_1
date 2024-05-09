@@ -1,4 +1,4 @@
-Autotrading_System_1 is a comprehensive Python-based platform designed to facilitate the development, optimization, and deployment of automated trading systems. It encompasses various modules for data processing, model training, strategy backtesting, risk management, execution, and monitoring, making it a versatile tool for both beginners and experienced traders.
+Autotrader_System_1 is a comprehensive Python-based platform designed to facilitate the development, optimization, and deployment of automated trading systems. It encompasses various modules for data processing, model training, strategy backtesting, risk management, execution, and monitoring, making it a versatile tool for both beginners and experienced traders.
 
 ## Features
 
