@@ -16,3 +16,18 @@ def send_slack_notification(message, slack_token, slack_channel):
    except SlackApiError as e:
        logger.error(f"Error sending Slack notification: {e}")
 
+
+def monitor_performance(port=8000):
+    start_http_server(port)
+    
+    sharpe_ratio_gauge = Gauge('sharpe_ratio', 'Sharpe Ratio')
+    
+    while True:
+        # Calculate Sharpe ratio
+        sharpe_ratio = calculate_sharpe_ratio()
+        
+        # Update Prometheus gauge
+        sharpe_ratio_gauge.set(sharpe_ratio)
+        
+        time.sleep(60)  # Update every 60 seconds
+
