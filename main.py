@@ -9,6 +9,7 @@ from config import (
 from data.data_preprocessing import fetch_raw_data, preprocess_data
 from models.ensemble.ensemble_model import create_ensemble_model
 from strategies.mean_reversion.mean_reversion_strategy import mean_reversion_strategy
+from strategies.parabolic_sar_strategy import parabolic_sar_strategy
 from backtesting.backtesting_engine import backtest_strategy, analyze_performance
 from risk_management.risk_metrics import calculate_value_at_risk, calculate_expected_shortfall
 from execution.interactive_brokers.ib_execution import execute_order
@@ -33,9 +34,10 @@ def main():
        ensemble_model.fit(processed_data, epochs=50, batch_size=32)
        
        # Strategy backtesting
-       strategy = mean_reversion_strategy
-       portfolio = backtest_strategy(strategy, processed_data, INITIAL_CAPITAL)
-       performance_stats = analyze_performance(portfolio['returns'])
+       strategies = [mean_reversion_strategy, parabolic_sar_strategy]
+       for strategy in strategies:
+           portfolio = backtest_strategy(strategy, processed_data, INITIAL_CAPITAL)
+           performance_stats = analyze_performance(portfolio['returns'])
        
        # Risk management
        var = calculate_value_at_risk(portfolio['returns'])
